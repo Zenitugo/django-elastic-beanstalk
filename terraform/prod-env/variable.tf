@@ -13,3 +13,4 @@ variable "instance_type" {}
 variable "loadbalancer" {}
 variable "elb-scheme" {}
 variable "env_variable" {}
+variable "dockerfile_path" {}
