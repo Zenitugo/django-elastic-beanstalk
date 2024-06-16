@@ -31,7 +31,8 @@ resource "aws_s3_object" "archive_file" {
 
 # Store the nginx-config file
 resource "aws_s3_object" "nginx-config" {
-  bucket = aws_s3_bucket.docker-buckets.id
-  key    = "${sha256(var.nginx-content)}.zip"
-  source = var.nginx-config
+  bucket  = aws_s3_bucket.docker-buckets.id
+  key     = "${sha256(var.nginx-content)}.zip"
+  content = var.nginx-config
+  etag    = filemd5(var.nginx-content)
 }
