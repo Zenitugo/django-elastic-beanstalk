@@ -1,43 +1,37 @@
 resource "aws_elastic_beanstalk_environment" "app-env" {
   name                = var.env
-  application         = var.app-name
+  application         = var.app-name 
   solution_stack_name = var.solution_stack
   version_label       = var.beanstalk-version
   cname_prefix        = var.cname_prefix  
 
   setting {
-    name      = "Instance profile"
+    name      = "IamInstanceProfile"
     namespace = "aws:autoscaling:launchconfiguration" 
     value     = var.ec2-profile
 
   }
 
     setting {
-    name      = "Instance type"
+    name      = "InstanceType"
     namespace = "aws:autoscaling:launchconfiguration" 
     value     = var.instance_type
 
   }
 
     setting {
-    name      = "Loadbalancer-type"
+    name      = "LoadBalancerType"
     namespace = "aws:elasticbeanstalk:environment"
     value     = var.loadbalancer
 
   }
 
     setting {
-    name      = "elbs-scheme"
+    name      = "ELBScheme"
     namespace = "aws:ec2:vpc"
     value     = var.elb-scheme
 
   }
-
-    setting {
-      name      = "tier"
-      namespace = "aws:elasticbeanstalk:environment:process:default"
-      value     = "webserver"
-    } 
 
     setting {
       name      = "healthcheckpath"
@@ -48,7 +42,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
     dynamic "setting" {
     for_each = var.env_variable
     content {
-      namespace = "aws:elasticbeanstalkenvironment:application:environment"
+      namespace = "aws:elasticbeanstalk:application:environment"
       name = setting.key
       value = setting.value
     }
