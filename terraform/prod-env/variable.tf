@@ -1,0 +1,15 @@
+variable "region" {}
+variable "appname" {}
+variable "profile" {}
+variable "env" {}
+variable "ecr-name" {}
+variable "bucket-name" {}
+variable "iam_role" {}
+variable "iam_profile" {}
+variable "permissions" {}
+variable "solution_stack" {}
+variable "cname_prefix" {}
+variable "instance_type" {}
+variable "loadbalancer" {}
+variable "elb-scheme" {}
+variable "env_variable" {}
