@@ -18,8 +18,7 @@ module "environment" {
     instance_type     = var.instance_type 
     loadbalancer      = var.loadbalancer
     elb-scheme        = var.elb-scheme
-    env_variable      = var.env_variable  
-    
+    env_variable      = var.env_variable
 }
 
 module "ECR" {
