@@ -14,5 +14,5 @@ output "nginx-config" {
 }
 
 output "nginx-content" {
-    value = data.archive_file.nginx_config.content
+    value = data.archive_file.nginx_config.source_file
 }
