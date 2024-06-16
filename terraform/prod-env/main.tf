@@ -1,7 +1,6 @@
 module "application" {
     source            = "../childmodules/application"
     appname           = var.appname
-    content           = module.docker.content 
     bucket-id         = module.s3.bucket-id
     bucket-object     = module.s3.bucket-object  
 }
@@ -37,7 +36,12 @@ module "s3" {
 
 module "docker" {
     source            = "../childmodules/docker"
-    region            = var.region 
+    providers  = {
+        docker       = docker.kreuzwerker
+    }
+    region            = var.region
+    ecr_uri           = module.ECR.ecr_uri
+    dockerfile_path   = var.dockerfile_path  
 }
 
 module "ec2" {
