@@ -1,0 +1,10 @@
+variable "app-name" {}
+variable "env" {}
+variable "solution_stack" {}
+variable "cname_prefix" {}
+variable "beanstalk-version" {}
+variable "ec2-profile" {}
+variable "instance_type" {}
+variable "loadbalancer" {}
+variable "elb-scheme" {}
+variable "env_variable" {}
