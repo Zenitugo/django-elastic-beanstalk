@@ -20,6 +20,7 @@ provider "aws" {
 
 # Configuration for Docker
 provider "docker" {
+  alias = "kreuzwerker"
   registry_auth {
     address  = local.aws_ecr_url 
     username = data.aws_ecr_authorization_token.token.user_name
