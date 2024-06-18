@@ -1,6 +1,5 @@
 variable "region" {}
 variable "appname" {}
-variable "profile" {}
 variable "env" {}
 variable "ecr-name" {}
 variable "bucket-name" {}
