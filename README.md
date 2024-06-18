@@ -15,3 +15,14 @@ The article has higlighted the pre-requisites to have, the only difference here 
 
 
 
+
+
+
+## Terraform
+Terraform tool was used to provision the docker image build and push to Amazon Elastic Container Registry.
+
+
+
+
+
+
