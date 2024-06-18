@@ -14,29 +14,24 @@ terraform {
     context = "../../../Beanstalk"
      dockerfile = "Dockerfile"
    }
+
+   depends_on = [ var.ecr_uri ]
  }
 
- resource "null_resources" "image" {
-      provisioner "local-exec" {
-    command = <<EOF
-    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com
-    gradle build -p noiselesstech
-    docker build -t "${aws_ecr_repository.noiselesstech.repository_url}:latest" -f noiselesstech/Dockerfile .
-    docker push "${aws_ecr_repository.noiselesstech.repository_url}:latest"
-    EOF
-  }
+# Login to ecr repo
+ resource "null_resource" "login_to_ecr" {
+   provisioner "local-exec" {
+     command = <<EOF
+     aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.ecr_uri}
 
+     docker push ${var.ecr_uri}:latest
+   EOF
+  
+   }
+   depends_on = [ docker_image.image ]
 
-  triggers = {
-    "run_at" = timestamp()
-  }
+ } 
 
-
-  depends_on = [
-    aws_ecr_repository.noiselesstech,
-  ]
-
- }
 
 
 # Create docker run configuration file. This code writes the content into the Dockerrun.aws.json file

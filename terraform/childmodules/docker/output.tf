@@ -8,3 +8,9 @@ output "archive" {
 output "content" {
     value = local_file.docker_run_config.content
 }
+
+
+# Output login
+output "login" {
+    value = null_resource.login_to_ecr
+}

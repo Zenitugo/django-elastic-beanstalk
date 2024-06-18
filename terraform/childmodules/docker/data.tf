@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 # Compress docker run config file
 data "archive_file" "docker_run" {
     type             = "zip"
