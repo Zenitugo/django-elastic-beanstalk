@@ -5,7 +5,10 @@ output "app-name" {
     
 #Output beanstalk version
 output "beanstalk-version"{
-    value = aws_elastic_beanstalk_application_version.eb_version.name
+    #value = aws_elastic_beanstalk_application_version.eb_version[each.key]
+    value = {  # Assuming you want to output all version names as a map
+    for key, version in aws_elastic_beanstalk_application_version.eb_version : key => version.name
+  }
 }    
 
 #Output the nginx configurationfile
