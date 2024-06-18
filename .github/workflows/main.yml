@@ -1,6 +1,6 @@
 name: Workflow to create deploy a Django application on Elastic Beanstal using Terraform
 
-on:
+#on:
   workflow_dispatch:
     inputs:
       action:
