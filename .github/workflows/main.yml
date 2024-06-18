@@ -1,0 +1,41 @@
+name: Workflow to create deploy a Django application on Elastic Beanstal using Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'Terraform_apply'
+
+jobs:  
+  terraform_apply: 
+    name: "Deploy terraform script"
+    if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Terraform_apply'}}
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v3
+          with:
+            terraform_version: "1.1.7"
+
+        - name: Setup Docker Buildx
+          uses: docker/setup-buildx-action@v3
+
+        - name: Build and push
+          uses: docker/build-push-action@v6
+          with:
+            push: true
+            tags: user/app:latest
+
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            aws-region: eu-central-1
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        - name: 
