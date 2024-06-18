@@ -30,7 +30,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Create and deploy to Elastic Beanstalk
-        working-directory: ./terraform
         run: |
           echo "Deploying django application"
           cd terraform
