@@ -14,28 +14,47 @@ jobs:
     if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Terraform_apply'}}
     runs-on: ubuntu-latest
     steps:
-        - name: Checkout
-          uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        - name: Setup Terraform
-          uses: hashicorp/setup-terraform@v3
-          with:
-            terraform_version: "1.1.7"
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.1.7"
 
-        - name: Setup Docker Buildx
-          uses: docker/setup-buildx-action@v3
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-        - name: Build and push
-          uses: docker/build-push-action@v6
-          with:
-            push: true
-            tags: user/app:latest
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: user/app:latest
 
-        - name: Configure AWS Credentials
-          uses: aws-actions/configure-aws-credentials@v4
-          with:
-            aws-region: eu-central-1
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: eu-central-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-        - name: 
+      - name: Create and deploy to Elastic Beanstalk
+        run: |
+          echo "Deploying django application"
+          cd terraform
+          cd prodd-env
+          terraform init
+          terraform plan -var-file="terraform.tfvars"
+          terraform apply -auto-approve
+
+      - name: Send notification to slack on the status of my pipeline
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+                "text": "Github Actions Complete, CI pipeline: EKS created successfully"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        id: Slack  
