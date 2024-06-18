@@ -2,22 +2,31 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   name                = var.env
   application         = var.app-name 
   solution_stack_name = var.solution_stack
-  version_label       = var.beanstalk-version
+  version_label       = "beanstalk-v1.0.0"
   cname_prefix        = var.cname_prefix  
 
+
   setting {
-    name      = "IamInstanceProfile"
     namespace = "aws:autoscaling:launchconfiguration" 
+    name      = "IamInstanceProfile"
     value     = var.ec2-profile
 
   }
 
-    setting {
-    name      = "InstanceType"
+  setting {
     namespace = "aws:autoscaling:launchconfiguration" 
+    name      = "InstanceType"
     value     = var.instance_type
 
   }
+
+  setting {
+    namespace = "aws:autoscaling:asg" 
+    name      = "MaxSize"
+    value     = var.max_instance_count
+
+  }
+
 
     setting {
     name      = "LoadBalancerType"
@@ -46,5 +55,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
       name = setting.key
       value = setting.value
     }
-}
+ }
+  
+ depends_on = [ var.login ]
 }
