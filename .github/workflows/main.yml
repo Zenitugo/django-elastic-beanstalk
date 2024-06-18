@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "Deploying django application"
           cd terraform
-          cd prodd-env
+          cd prod-env
           terraform init
           terraform plan -var-file="terraform.tfvars"
           terraform apply -auto-approve
@@ -77,7 +77,7 @@ jobs:
         run: |
           echo "Destroying django application"
           cd terraform
-          cd prodd-env
+          cd prod-env
           terraform init
           terraform destroy -auto-approve
       
