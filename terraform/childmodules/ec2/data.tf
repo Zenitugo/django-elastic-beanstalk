@@ -24,7 +24,6 @@ data "aws_iam_policy_document" "permissions" {
             "ec2messages:*",
             "s3:*",
             "sqs:*",
-            "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
         ]
         resources = ["*"]
     }
