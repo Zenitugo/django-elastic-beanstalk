@@ -11,7 +11,7 @@ terraform {
    name = "${var.ecr_uri}:latest"
 
    build  {
-    context = "../../../Beanstalk"
+    context = "../../../django-elastic-beanstalk"
      dockerfile = "Dockerfile"
    }
 
