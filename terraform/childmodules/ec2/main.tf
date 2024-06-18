@@ -14,7 +14,7 @@ resource "aws_iam_role" "role" {
     "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier",
     "arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker",
     "arn:aws:iam::aws:policy/AWSElasticBeanstalkWorkerTier",
-    "arn:aws:iam::aws:policy/EC2InstanceProfileForImageBuilder"
+    "arn:aws:iam::aws:policy/EC2InstanceProfileForImageBuilder",  
  ]
 
  inline_policy {
