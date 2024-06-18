@@ -11,7 +11,7 @@ on:
 jobs:  
   terraform_apply: 
     name: "Deploy Elastic Beanstalk Infrastructure"
-    if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Deploy Elastic Beanstalk infrastructure'}}
+    if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Terraform apply'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -63,7 +63,7 @@ jobs:
 
   terraform_destroy: 
     name: "Destroy Elastic Beanstalk infrastructure"
-    if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Destroy Elastic Beanstalk infrastructure'}}
+    if: ${{ github.ref == 'refs/heads/master' && github.event.inputs.action == 'Terraform Destroy'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
