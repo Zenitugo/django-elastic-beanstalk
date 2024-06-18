@@ -1,1 +1,6 @@
 terraform/prod-env/terraform.tfvars
+terraform/prod-env/.terraform.lock.hcl
+terraform/prod-env/.terraform/
+terraform/prod-env/terraform.tfstate
+terraform/prod-env/terraform.tfstate.backup
+terraform/prod-env/terraform.tfvars
