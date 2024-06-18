@@ -1,6 +1,5 @@
 region                   = "eu-central-1"
 appname                  = "votingApp"
-profile                  = "default" 
 env                      = "app-prod-env" 
 ecr-name                 = "rubby"
 bucket-name              = "dockerrun-config-bucket"
