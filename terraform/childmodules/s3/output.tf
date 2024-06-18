@@ -4,7 +4,7 @@ output "bucket-id"{
 }
 
 
-#Output non-empty bucket 
+#Output s3 object keys
 output "bucket-object" {
-    value = aws_s3_object.archive_file.id
+  value = ["${aws_s3_object.archive_file.key}", "${aws_s3_object.nginx-config.key}"]
 }

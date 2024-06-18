@@ -3,15 +3,9 @@ resource "aws_s3_bucket" "docker-buckets" {
     bucket = var.bucket-name
 }
 
-resource "aws_s3_bucket_acl" "bucket-acl" {
-  depends_on = [aws_s3_bucket.docker-buckets]
-
-  bucket = aws_s3_bucket.docker-buckets.id
-  acl    = "private"
-}
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
-  depends_on = [ aws_s3_bucket_acl.bucket-acl]  
+  depends_on = [ aws_s3_bucket.docker-buckets]  
   bucket = aws_s3_bucket.docker-buckets.id
 
   rule {
