@@ -1,10 +1,7 @@
 module "application" {
     source            = "../childmodules/application"
     appname           = var.appname
-    bucket-id         = module.s3.bucket-id  
-    bucket-object     = module.s3.bucket-object 
-    version_name      = var.version_name 
-}
+ }
 
 
 module "environment" {
@@ -13,7 +10,6 @@ module "environment" {
     app-name          = module.application.app-name
     solution_stack    = var.solution_stack 
     cname_prefix      = var.cname_prefix 
-    version-label     = module.application.version-label
     ec2-profile       = module.ec2.ec2-profile
     instance_type     = var.instance_type 
     loadbalancer      = var.loadbalancer
