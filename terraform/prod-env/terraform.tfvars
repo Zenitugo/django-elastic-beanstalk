@@ -4,7 +4,7 @@ env                      = "app-prod-env"
 ecr-name                 = "rubby"
 bucket-name              = "dockerrun-config-bucket"
 iam_role                 = "aws-elasticbeanstalk-ec2-role" 
-iam_profile              = "ec2-iam-profile" 
+iam_profile              = "iam-beanstalk-profile" 
 permissions              = "role-permissions"
 solution_stack           = "64bit Amazon Linux 2023 v4.3.3 running Docker"
 cname_prefix             = "zenitugo"  
@@ -17,4 +17,5 @@ env_variable             = {
 }
 dockerfile_path          = "../childmodules/terraform/Dockerfile"
 max_instance_count       = 2
+version_name             = "beanstalk-v1.0.0" 
 
