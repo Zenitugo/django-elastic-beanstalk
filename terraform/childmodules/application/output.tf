@@ -25,6 +25,11 @@ output "nginx-content" {
 output "version-label"{
     #value = aws_elastic_beanstalk_application_version.eb_version[each.key]
     value = {  # Assuming you want to output all version names as a map
-    for key, version in aws_elastic_beanstalk_application_version.eb_version : key => version.version_label
+    for key, version in aws_elastic_beanstalk_application_version.eb_version : key => verdion.id
   }
 }    
+
+
+# output "version-label" {
+#     value = aws_elastic_beanstalk_application_version.eb_version.id
+# }
