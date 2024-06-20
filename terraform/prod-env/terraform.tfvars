@@ -17,5 +17,4 @@ env_variable             = {
 }
 dockerfile_path          = "../childmodules/terraform/Dockerfile"
 max_instance_count       = 2
-version_name             = "beanstalk-v1.0.0" 
 
