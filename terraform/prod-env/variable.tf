@@ -14,4 +14,4 @@ variable "elb-scheme" {}
 variable "env_variable" {}
 variable "dockerfile_path" {}
 variable "max_instance_count" {}
-variable "version_name" {}
+
