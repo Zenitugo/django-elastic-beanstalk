@@ -19,3 +19,12 @@ output "nginx-config" {
 output "nginx-content" {
     value = data.archive_file.nginx_config.source_file
 }
+
+
+#Output beanstalk version
+output "version-label"{
+    #value = aws_elastic_beanstalk_application_version.eb_version[each.key]
+    value = {  # Assuming you want to output all version names as a map
+    for key, version in aws_elastic_beanstalk_application_version.eb_version : key => version.version_label
+  }
+}    
