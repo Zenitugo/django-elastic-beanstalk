@@ -1,6 +1,10 @@
 module "application" {
     source            = "../childmodules/application"
     appname           = var.appname
+    bucket-id         = module.s3.bucket-id
+    version_name      = var.version_name 
+    bucket-object1    = module.s3.bucket-object1
+    bucket-object2    = module.s3.bucket-object2  
  }
 
 
@@ -17,6 +21,7 @@ module "environment" {
     env_variable      = var.env_variable
     login             = module.docker.login 
     max_instance_count = var.max_instance_count
+    version-label     = module.application.version-label 
 }
 
 module "ECR" {
