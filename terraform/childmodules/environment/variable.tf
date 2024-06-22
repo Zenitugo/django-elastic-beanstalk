@@ -9,3 +9,4 @@ variable "elb-scheme" {}
 variable "env_variable" {}
 variable "login" {}
 variable "max_instance_count" {}
+variable "version-label" {}
