@@ -1,5 +1,6 @@
 #Create an instance profile and attach iam roles
 resource "aws_iam_instance_profile" "iam-role" {
+  count = length(data.aws_iam_instance_profile.existing.id) == 0 ? 1 : 0
   name = var.iam_profile
   role = aws_iam_role.role.name
 }
