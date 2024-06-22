@@ -43,7 +43,7 @@ jobs:
         with:
           payload: |
             {
-                "text": "Github Actions Complete, CI pipeline: EKS created successfully"
+                "text": "Github Actions Complete, CI pipeline: Elasti Beanstalk created successfully"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
@@ -86,7 +86,7 @@ jobs:
         with:
           payload: |
             {
-                "text": "Github Actions Complete, CI pipeline: EKS created successfully"
+                "text": "Github Actions Complete, CI pipeline: Elastic Beanstalk destroyed successfully"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
