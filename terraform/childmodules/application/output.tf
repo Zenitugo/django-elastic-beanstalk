@@ -14,3 +14,7 @@ output "nginx-content" {
     value = data.archive_file.nginx_config.source_file
 }
 
+# Output application version
+output "version-label" {
+    value = null_resource.deploy_application.id
+}
