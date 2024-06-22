@@ -17,4 +17,5 @@ env_variable             = {
 }
 dockerfile_path          = "../childmodules/terraform/Dockerfile"
 max_instance_count       = 2
+version_name             = "v1.1.1" 
 
