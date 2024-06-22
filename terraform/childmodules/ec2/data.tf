@@ -28,3 +28,10 @@ data "aws_iam_policy_document" "permissions" {
         resources = ["*"]
     }
 }
+
+
+
+# Data source to check if the instance profile exists
+data "aws_iam_instance_profile" "existing" {
+  name = var.iam_profile
+}
