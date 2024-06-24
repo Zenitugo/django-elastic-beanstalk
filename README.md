@@ -13,46 +13,29 @@ The article has higlighted the pre-requisites to have, the only difference here 
 
 ![architecture](./images/voting-app%20(2).png)
 
+## GITHUB ACTIONS
+The GitHub Actions workflow file `main.yml` is used to automate the deployment of the terraform scripts. 
+
+It was also configured to send alerts on slack when the deployment has been completed.
+![slack](./images/slack.png)
+
 ## Terraform
 Terraform tool was used to provision the docker image build and push to Amazon Elastic Container Registry.
 
-**This piece of code was used to build docker image**
-```
- resource "docker_image" "image" {
-   name = "${var.ecr_uri}:latest"
+It
+ was used to create S3 bucket, ec2 instance profile and the elastic beanstalk environment
 
-   build  {
-    context = "../../../django-elastic-beanstalk"
-     dockerfile = "Dockerfile"
-   }
+The S3 buckets were created to store the **Dockerrun.aws.json.zip** file and the **.ebextensions** directory
 
-   depends_on = [ var.ecr_uri ]
- }
-```
-
-**This piece of code was used to push docker image to AWS Elastic Container Registry**
-```
- resource "null_resource" "login_to_ecr" {
-   provisioner "local-exec" {
-     command = <<EOF
-     aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.ecr_uri}
-
-     docker push ${var.ecr_uri}:latest
-   EOF
-  
-   }
-   depends_on = [ docker_image.image ]
-
- } 
- ```
-
- 
- This tool was used to create S3 bucket, ec2 instance profile and the elastic beanstalk environment
  **Proof of s3 bucket creation**
  ![s3](./images/s3.png)
 
  **Proof of ec2 instance created**
  ![ec2](./images/ec2.png)
+
+
+ Different resource block was used to create the Elastic Beanstalk application and environment.
+
 
  **Proof of beanstalk application created**
  ![beanstalk](./images/bean1.png)
