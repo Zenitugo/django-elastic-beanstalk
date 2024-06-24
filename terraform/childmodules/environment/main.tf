@@ -3,7 +3,7 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
   application         = var.app-name 
   solution_stack_name = var.solution_stack
   cname_prefix        = var.cname_prefix  
-  version_label       = var.version-label
+  version_label       = var.version_label
 
 
   setting {
