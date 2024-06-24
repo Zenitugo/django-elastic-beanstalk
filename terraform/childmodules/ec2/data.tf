@@ -18,6 +18,7 @@ data "aws_iam_policy_document" "permissions" {
             "ecr:GetDownloadUrlForLayer",
             "ecr:BatchGetImage",
             "ecr:BatchCheckLayerAvailability",
+            "ecr:GetAuthorizationToken",
             "cloudwatch:putmetricdata",
             "ec2:DescribeInstanceStatus",
             "ssm:*",
