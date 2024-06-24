@@ -11,15 +11,10 @@ resource "null_resource" "deploy_application" {
       aws elasticbeanstalk create-application-version --application-name ${aws_elastic_beanstalk_application.app-name.name} \
       --version-label ${var.version_name} \
       --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object1} \
-      --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object2} 
+      --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object2} \
+      --output json > output.json
 
     EOT
-
-    # Capture the version label from the command output
-    interpreter = ["bash", "-c"]
-    environment = {
-      VERSION_LABEL = "${var.version_name}"
-    }
   }
   
   depends_on = [aws_elastic_beanstalk_application.app-name,

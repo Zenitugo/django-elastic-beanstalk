@@ -16,5 +16,5 @@ output "nginx-content" {
 
 # Output application version
 output "version-label" {
-    value = null_resource.deploy_application.id
+  value = data.external.version_label.result
 }
