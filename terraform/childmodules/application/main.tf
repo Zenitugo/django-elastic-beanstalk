@@ -12,7 +12,6 @@ resource "null_resource" "deploy_application" {
       --version-label ${var.version_name} \
       --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object1} \
       --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object2} \
-      --output json > output.json
 
     EOT
   }
