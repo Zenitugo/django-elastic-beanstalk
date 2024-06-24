@@ -1,0 +1,1 @@
+{"AWSEBDockerrunVersion":"1","Image":{"Name":"930456265944.dkr.ecr.eu-central-1.amazonaws.com/rubby","Update":"true"},"Logging":"/var/log/nginx","Ports":[{"ContainerPort":8000,"HostPort":80}],"Volumes":[{"ContainerDirectory":"/var/www/html","HostDirectory":"/var/app/current"}]}
