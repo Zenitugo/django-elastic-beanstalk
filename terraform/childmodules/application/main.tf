@@ -14,11 +14,19 @@ resource "null_resource" "deploy_application" {
       --source-bundle S3Bucket=${var.bucket-id},S3Key=${var.bucket-object2} 
 
     EOT
+
+    # Capture the version label from the command output
+    interpreter = ["bash", "-c"]
+    environment = {
+      VERSION_LABEL = "${var.version_name}"
+    }
   }
   
   depends_on = [aws_elastic_beanstalk_application.app-name,
                 var.bucket-object1,
                 var.bucket-object2 ]
+             
+                
 }
 
 
