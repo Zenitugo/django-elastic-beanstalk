@@ -21,7 +21,7 @@ module "environment" {
     env_variable      = var.env_variable
     login             = module.docker.login 
     max_instance_count = var.max_instance_count
-    version_label      = module.application.version-label    
+    version_name      = var.version_name    
 
 }
 
