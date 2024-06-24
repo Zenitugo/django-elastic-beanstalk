@@ -12,8 +12,8 @@ instance_type            = "t3.medium"
 loadbalancer             = "Application"
 elb-scheme               = "Internet facing"
 env_variable             = {
-    DJANGO_SETTINGS_MODULE = "my_app.settings"
-    PYTHONPATH             = "/opt/python/current/app/my_app"
+    DJANGO_SETTINGS_MODULE = "myvoting.settings"
+    PYTHONPATH             = "/opt/python/current/app/myvoting"
 }
 dockerfile_path          = "../childmodules/terraform/Dockerfile"
 max_instance_count       = 2
